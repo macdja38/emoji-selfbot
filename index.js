@@ -101,12 +101,13 @@ class Bot {
           break
         }
         case 'noemoji': {
+          args.shift();
           if (args.length < 1) {
             console.log('insufficient params for emojimove')
             client.deleteMessage(msg.channel.id, msg.id)
             return
           }
-          this.delEmoji(msg, args[0], () => {
+          this.delEmoji(msg, /<:\w+:(\d+)>/.exec(args[0])[1], () => {
             client.editMessage(msg.channel.id, msg.id, `deleted emoji ${args[0]} from ${msg.channel.guild.name}`)
           })
           break
