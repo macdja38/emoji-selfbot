@@ -3,13 +3,13 @@ const { Client, Constants } = require('eris')
 
 // PR (https://github.com/abalabahaha/eris/pull/97) has yet to be merged
 if (!Client.hasOwnProperty('createGuildEmoji')) {
-  Client.prototype.createGuildEmoji = (guildID, options) => {
+  Client.prototype.createGuildEmoji = function (guildID, options) {
     return this.requestHandler.request('POST', Constants.Endpoints.GUILD_EMOJIS(guildID), true, options)
   }
 }
 
 if (!Client.hasOwnProperty('deleteGuildEmoji')) {
-  Client.prototype.deleteGuildEmoji = (guildID, emojiID) => {
+  Client.prototype.deleteGuildEmoji = function (guildID, emojiID) {
     return this.requestHandler.request('DELETE', Constants.Endpoints.GUILD_EMOJI(guildID, emojiID), true)
   }
 }
